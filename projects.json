@@ -1,0 +1,18 @@
+{
+    "games": [
+      {
+        "url": "https://hmmmgames.itch.io/cards-of-loop-sonic-svm",
+        "description": "A sonic-themed card game."
+      },
+      {
+        "url": "https://gunroar.itch.io/loop",
+        "description": "A minimalist action game."
+      }
+    ],
+    "websites": [
+      {
+        "url": "https://artlixir.glitch.me/",
+        "description": "Generative art experiments."
+      }
+    ]
+  }
