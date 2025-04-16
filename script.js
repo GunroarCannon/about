@@ -7,8 +7,8 @@ async function loadAllProjects() {
     if (!response.ok) throw new Error("Failed to load projects.json");
     const projectData = await response.json();
 
-    await loadSection('games', projectData.games);
     await loadSection('websites', projectData.websites);
+    await loadSection('games', projectData.games);
     await loadSection('art', projectData.art);
     
   } catch (error) {
