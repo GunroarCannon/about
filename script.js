@@ -25,7 +25,7 @@ async function loadSection(sectionId, projects) {
     try {
       let preview;
       
-      // Try API first
+      /// Try API first
       try {
         preview = await fetchPreview(project.url);
       } catch (apiError) {
@@ -69,7 +69,7 @@ async function fetchPreview(url) {
 
 function createCard(preview, container) {
   const card = document.createElement('div');
-  card.className = 'card glow-on-hover';
+  card.className = 'card';// glow-on-hover';
   card.innerHTML = `
     <img src="${preview.image}" 
          alt="${preview.title}" 
