@@ -4,9 +4,8 @@ body {
     line-height: 1.6;
     margin: 0;
     min-height: 100vh;
-    background: linear-gradient(135deg, #e0f7ff 0%, #b3e0ff 50%, #88ccf1 100%);
-    background-attachment: fixed;
-    color: #2c3e50;
+    background: #000000;
+    color: #ffffff;
   }
   
   /* ===== ABOUT ME SECTION ===== */
@@ -14,14 +13,16 @@ body {
     max-width: 800px;
     margin: 40px auto;
     padding: 30px;
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(5px);
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    gap: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .avatar {
@@ -29,7 +30,7 @@ body {
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid rgba(44, 62, 80, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease;
   }
   
@@ -40,13 +41,20 @@ body {
   .bio h1 {
     margin: 0;
     font-size: 2.2rem;
+    color: #ffffff;
   }
   
   .bio h2 {
     margin: 5px 0 15px;
     font-size: 1.3rem;
-    color: #4a6b8a;
+    color: #cccccc;
     font-weight: normal;
+  }
+  
+  .bio p {
+    color: #eeeeee;
+    max-width: 600px;
+    margin: 0 auto;
   }
   
   /* ===== PROJECT CARDS ===== */
@@ -55,44 +63,28 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px;
     padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   
   .card {
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(30, 30, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 20px;
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 
-      0 2px 4px rgba(0, 0, 0, 0.05),
-      0 4px 8px rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
+      0 2px 4px rgba(255, 255, 255, 0.05),
+      0 4px 8px rgba(255, 255, 255, 0.05);
+    color: #ffffff;
   }
   
   .card:hover {
-    background: rgba(255, 255, 255, 0.95);
-    transform: translateY(-8px) rotate(0.5deg);
+    background: rgba(50, 50, 50, 0.95);
+    transform: translateY(-8px);
     box-shadow: 
-      0 6px 12px rgba(0, 0, 0, 0.15),
-      0 12px 24px rgba(0, 0, 0, 0.1);
-    animation: jiggle 0.4s ease;
-  }
-  
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #88ccf1, #b3e0ff);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover::before {
-    transform: scaleX(1);
+      0 6px 12px rgba(255, 255, 255, 0.15),
+      0 12px 24px rgba(255, 255, 255, 0.1);
   }
   
   .card img {
@@ -101,66 +93,74 @@ body {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
+    filter: grayscale(20%);
+    transition: filter 0.3s ease;
+  }
+  
+  .card:hover img {
+    filter: grayscale(0%);
   }
   
   .card h3 {
     margin: 0 0 10px;
     font-size: 1.3rem;
+    color: #ffffff;
   }
   
   .card p {
     margin: 0 0 15px;
-    color: #4a6b8a;
+    color: #cccccc;
   }
   
   .card a {
     display: inline-block;
     padding: 8px 16px;
-    background: linear-gradient(135deg, #88ccf1, #b3e0ff);
-    color: white;
+    background: #ffffff;
+    color: #000000;
     text-decoration: none;
     border-radius: 4px;
-    transition: transform 0.2s ease;
+    font-weight: bold;
+    transition: all 0.2s ease;
   }
   
   .card a:hover {
+    background: #88ccf1;
     transform: translateY(-2px);
   }
   
   /* ===== SECTION HEADERS ===== */
   section h2 {
-    background: linear-gradient(90deg, rgba(44,62,80,0.1) 0%, rgba(44,62,80,0) 100%);
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: #2c3e80;
-    margin: 40px 20px 0;
-    font-size: 1.5rem;
+    text-align: center;
+    padding: 15px 20px;
+    color: #ffffff;
+    margin: 40px auto 0;
+    font-size: 1.8rem;
+    max-width: 1200px;
+    position: relative;
   }
   
-  /* ===== ANIMATIONS ===== */
-  @keyframes jiggle {
-    0%, 100% {
-      transform: translateY(-8px) rotate(0deg);
-    }
-    25% {
-      transform: translateY(-8px) rotate(1deg);
-    }
-    50% {
-      transform: translateY(-8px) rotate(-0.5deg);
-    }
-    75% {
-      transform: translateY(-8px) rotate(0.5deg);
-    }
+  section h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: #ffffff;
+    margin: 10px auto 0;
   }
   
   /* ===== RESPONSIVE ADJUSTMENTS ===== */
   @media (max-width: 768px) {
     .about-me {
-      flex-direction: column;
-      text-align: center;
+      margin: 20px;
+      padding: 20px;
     }
     
     .cards-container {
       grid-template-columns: 1fr;
+      padding: 20px;
+    }
+    
+    section h2 {
+      font-size: 1.5rem;
     }
   }
