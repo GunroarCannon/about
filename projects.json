@@ -2,17 +2,55 @@
     "games": [
       {
         "url": "https://hmmmgames.itch.io/cards-of-loop-sonic-svm",
-        "description": "A sonic-themed card game."
+        "description": "A sonic-themed card game.",
+        "fallback": {
+          "title": "Cards of Loop Sonic SVM",
+          "image": "assets/game-placeholder.jpg"
+        }
       },
       {
         "url": "https://gunroar.itch.io/loop",
-        "description": "A minimalist action game."
+        "description": "A minimalist action game.",
+        "fallback": {
+          "title": "LOOP",
+          "image": "assets/game-placeholder.jpg"
+        }
       }
     ],
     "websites": [
       {
         "url": "https://artlixir.glitch.me/",
-        "description": "Generative art experiments."
+        "description": "Generative art experiments.",
+        "fallback": {
+          "title": "Artlixir",
+          "image": "assets/web-placeholder.jpg"
+        }
+      }
+    ],
+    "art": [
+      {
+        "url": "https://hmmmgames.itch.io/frog-samurai",
+        "description": "Pixel art character designs.",
+        "fallback": {
+          "title": "Frog Samurai Art",
+          "image": "assets/art-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/dust-gallery",
+        "description": "Environmental concept art.",
+        "fallback": {
+          "title": "Dust Gallery",
+          "image": "assets/art-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/mega-moonlight-mania",
+        "description": "Retro-style illustrations.",
+        "fallback": {
+          "title": "Mega Moonlight Mania",
+          "image": "assets/art-placeholder.jpg"
+        }
       }
     ]
   }
