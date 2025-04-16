@@ -8,6 +8,17 @@ body {
     color: #333;
   }
 
+  html {
+	background: /* 1 */
+		var(--pattern, 
+			radial-gradient(closest-side, #777, #fff) 
+				0/ 1em 1em space), 
+		var(--map, 
+			linear-gradient(90deg, #888, #fff));
+	background-blend-mode: multiply /* 2 */;
+	filter: contrast(21) /* 3 */
+}
+
   
   /* About Me Section */
   .about-me {
