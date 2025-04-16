@@ -69,7 +69,7 @@ async function fetchPreview(url) {
 
 function createCard(preview, container) {
   const card = document.createElement('div');
-  card.className = 'card';
+  card.className = 'card glow-on-hover';
   card.innerHTML = `
     <img src="${preview.image}" 
          alt="${preview.title}" 
