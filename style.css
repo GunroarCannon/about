@@ -7,18 +7,17 @@ body {
     padding: 20px;
     color: #333;
   }
-
-  html {
-	background: /* 1 */
-		var(--pattern, 
-			radial-gradient(closest-side, #777, #fff) 
-				0/ 1em 1em space), 
-		var(--map, 
-			linear-gradient(90deg, #888, #fff));
-	background-blend-mode: multiply /* 2 */;
-	filter: contrast(21) /* 3 */
-}
-
+  
+  body {
+    background-color: #269;
+    background-image:
+      linear-gradient(rgba(255,255,255,.5) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(255,255,255,.5) 2px, transparent 2px),
+      linear-gradient(rgba(255,255,255,.28) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.28) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  }
   
   /* About Me Section */
   .about-me {
@@ -204,4 +203,76 @@ body {
       0% { background-position: 0 0; }
       50% { background-position: 400% 0; }
       100% { background-position: 0 0; }
+  }
+
+  /* Background Gradient */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0f7ff 0%, #b3e0ff 50%, #88ccf1 100%);
+    background-attachment: fixed;
+  }
+  
+  /* Semi-transparent About Me Section */
+  .about-me {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.85); /* 85% opacity white */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  /* Card Styling with slight transparency */
+  .card {
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  }
+  
+  .card:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Keep existing avatar and text styles */
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(44, 62, 80, 0.2);
+  }
+  
+  .bio h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: #2c3e50;
+  }
+  
+  .bio h2 {
+    margin: 5px 0 15px;
+    font-size: 1.3rem;
+    color: #4a6b8a;
+    font-weight: normal;
+  }
+  
+  /* Section headers with subtle gradient */
+  section h2 {
+    background: linear-gradient(90deg, rgba(44,62,80,0.1) 0%, rgba(44,62,80,0) 100%);
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: #2c3e80;
+    margin-top: 40px;
   }
