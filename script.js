@@ -1,5 +1,5 @@
 const API_URL = "https://link-previewer-efsv.onrender.com/preview?url=";
-const FALLBACK_IMAGE = "assets/fallback.jpg";
+const FALLBACK_IMAGE = "fallback.jpg";
 
 async function loadAllProjects() {
   try {
@@ -33,7 +33,7 @@ async function loadSection(sectionId, projects) {
         preview = {
           title: project.fallback?.title || new URL(project.url).hostname,
           description: project.description || "Click to view content",
-          image: project.fallback?.image || FALLBACK_IMAGE,
+          image: project.fallback?.imagee || FALLBACK_IMAGE,
           url: project.url
         };
       }

@@ -2,25 +2,105 @@
     "games": [
       {
         "url": "https://hmmmgames.itch.io/cards-of-loop-sonic-svm",
-        "description": "A sonic-themed card game.",
+        "description": "A rhythm-based card game with Sonic aesthetics.",
         "fallback": {
-          "title": "Cards of Loop Sonic SVM",
+          "title": "Cards of Loop: Sonic SVM",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/pigcrawl",
+        "description": "Roguelike dungeon crawler with pig warriors.",
+        "fallback": {
+          "title": "Pigcrawl",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/rem-psyche",
+        "description": "Psychological horror adventure game.",
+        "fallback": {
+          "title": "Rem Psyche",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/madcrawl",
+        "description": "Fast-paced action roguelike.",
+        "fallback": {
+          "title": "Madcrawl",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/coingame",
+        "description": "Minimalist coin collection game.",
+        "fallback": {
+          "title": "Coingame",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/ironquiz",
+        "description": "Trivia game with ironclad questions.",
+        "fallback": {
+          "title": "Ironquiz",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/pig-jig",
+        "description": "Musical pig dancing game.",
+        "fallback": {
+          "title": "Pig Jig",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/dust-bb",
+        "description": "Post-apocalyptic basketball game.",
+        "fallback": {
+          "title": "Dust BB",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://hmmmgames.itch.io/dragon",
+        "description": "Dragon taming simulator.",
+        "fallback": {
+          "title": "Dragon Game",
           "image": "assets/game-placeholder.jpg"
         }
       },
       {
         "url": "https://gunroar.itch.io/loop",
-        "description": "A minimalist action game.",
+        "description": "Minimalist infinite runner.",
         "fallback": {
           "title": "LOOP",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://gunroar.itch.io/coursegame",
+        "description": "Procedural course generator.",
+        "fallback": {
+          "title": "Coursegame",
           "image": "assets/game-placeholder.jpg"
         }
       }
     ],
     "websites": [
       {
+        "url": "https://futo-chatbot-server.onrender.com/",
+        "description": "AI chatbot with custom responses.",
+        "fallback": {
+          "title": "Futo Chatbot",
+          "image": "assets/web-placeholder.jpg"
+        }
+      },
+      {
         "url": "https://artlixir.glitch.me/",
-        "description": "Generative art experiments.",
+        "description": "Generative art playground.",
         "fallback": {
           "title": "Artlixir",
           "image": "assets/web-placeholder.jpg"
