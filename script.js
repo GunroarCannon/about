@@ -1,4 +1,4 @@
-const API_URL = "https://your-api-name.onrender.com/preview?url=";
+const API_URL = "https://link-previewer-efsv.onrender.com/preview?url=";
 
 async function loadProjects() {
   const response = await fetch('projects.json');
