@@ -1,22 +1,5 @@
 const API_URL = "https://link-previewer-efsv.onrender.com/preview?url=";
 const FALLBACK_IMAGE = "fallback.jpg";
-
-async function loadAllProjects() {
-  try {
-    const response = await fetch('projects.json');
-    if (!response.ok) throw new Error("Failed to load projects.json");
-    const projectData = await response.json();
-
-    await loadSection('websites', projectData.websites);
-    await loadSection('games', projectData.games);
-    await loadSection('art', projectData.art);
-    
-  } catch (error) {
-    console.error("Error loading projects:", error);
-    showErrorUI();
-  }
-}
-
 let staticPreviews = {};
 
 // Load static preview data
@@ -55,6 +38,49 @@ async function getPreview(url) {
   }
 }
 
+function createCard(preview, container) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <img src="${preview.image}" 
+         alt="${preview.title}" 
+         onerror="this.src='${FALLBACK_IMAGE}'">
+    <h3>${preview.title}</h3>
+    <p>${preview.description}</p>
+    <a href="${preview.url}" target="_blank">Visit →</a>
+  `;
+  container.appendChild(card);
+}
+
+function updateCard(url, preview, container) {
+  const cards = container.querySelectorAll('.card');
+  for (const card of cards) {
+    const cardUrl = card.querySelector('a').href;
+    if (cardUrl === url) {
+      card.innerHTML = `
+        <img src="${preview.image}" 
+             alt="${preview.title}" 
+             onerror="this.src='${FALLBACK_IMAGE}'">
+        <h3>${preview.title}</h3>
+        <p>${preview.description}</p>
+        <a href="${preview.url}" target="_blank">Visit →</a>
+      `;
+      break;
+    }
+  }
+}
+
+function showErrorUI() {
+  document.querySelectorAll('.cards-container').forEach(container => {
+    container.innerHTML = `
+      <div class="error-notice">
+        <p>Content failed to load. Please check your connection or 
+        <a href="javascript:location.reload()">try again</a>.</p>
+      </div>
+    `;
+  });
+}
+
 async function loadSection(sectionId, projects) {
   const container = document.getElementById(`${sectionId}-container`);
   if (!container) return;
@@ -82,6 +108,22 @@ async function refreshPreviews(projects, container) {
     } catch (error) {
       console.warn(`Couldn't refresh ${project.url}`, error);
     }
+  }
+}
+
+async function loadAllProjects() {
+  try {
+    const response = await fetch('projects.json');
+    if (!response.ok) throw new Error("Failed to load projects.json");
+    const projectData = await response.json();
+
+    await loadSection('websites', projectData.websites);
+    await loadSection('games', projectData.games);
+    await loadSection('art', projectData.art);
+    
+  } catch (error) {
+    console.error("Error loading projects:", error);
+    showErrorUI();
   }
 }
 
