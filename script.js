@@ -1,11 +1,28 @@
 const API_URL = "https://link-previewer-efsv.onrender.com/preview?url=";
 const FALLBACK_IMAGE = "fallback.jpg";
+
+async function loadAllProjects() {
+  try {
+    const response = await fetch('projects.json');
+    if (!response.ok) throw new Error("Failed to load projects.json");
+    const projectData = await response.json();
+
+    await loadSection('websites', projectData.websites);
+    await loadSection('games', projectData.games);
+    await loadSection('art', projectData.art);
+    
+  } catch (error) {
+    console.error("Error loading projects:", error);
+    showErrorUI();
+  }
+}
+
 let staticPreviews = {};
 
 // Load static preview data
 async function loadStaticPreviews() {
   try {
-    const response = await fetch('previews.json');
+    const response = await fetch('preview.json');
     staticPreviews = response.ok ? await response.json() : {};
   } catch (error) {
     console.error("Couldn't load previews.json", error);
