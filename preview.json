@@ -12,10 +12,10 @@
     "url": "https://hmmmgames.itch.io/pigcrawl"
   },
   "https://hmmmgames.itch.io/rem-psyche": {
-    "title": "Rem Psyche",
-    "description": "Psychological horror adventure game.",
-    "image": "assets/game-placeholder.jpg",
-    "url": "https://hmmmgames.itch.io/rem-psyche"
+  "title":"Rem Psycho by Gunroar",
+  "description":"101% Accurate Dream Sim",
+  "image":"https://img.itch.zone/aW1nLzEwODYzNjg3LmpwZw==/original/m6OMY1.jpg",
+  "url":"https://hmmmgames.itch.io/rem-psyche"
   },
   "https://hmmmgames.itch.io/madcrawl": {
     "title": "Madcrawl by Gunroar",
@@ -36,10 +36,10 @@
     "url": "https://hmmmgames.itch.io/ironquiz"
   },
   "https://hmmmgames.itch.io/pig-jig": {
-    "title": "Pig Jig",
-    "description": "Musical pig dancing game.",
-    "image": "assets/game-placeholder.jpg",
-    "url": "https://hmmmgames.itch.io/pig-jig"
+    "title":"Pig Jig by Gunroar",
+    "description":"A platformer with 1000+ levels and a pig",
+    "image":"https://img.itch.zone/aW1nLzgzMjUyNTYucG5n/original/998aPe.png",
+    "url":"https://hmmmgames.itch.io/pig-jig"
   },
   "https://hmmmgames.itch.io/dust-bb": {
     "title": "Dust: Battle Beneath by Gunroar",
@@ -82,6 +82,12 @@
     "description": "You're a frog.",
     "image": "https://img.itch.zone/aW1nLzE3ODczOTg1LmpwZw==/original/d%2Fh%2BFI.jpg",
     "url": "https://hmmmgames.itch.io/frog-samurai"
+  },
+  "https://gunroar.itch.io/my-little-comic": {
+  "title": "[COMIC] Here, take this by gunroar",
+  "image": "https://img.itch.zone/aW1nLzE0OTk0MjY0LnBuZw==/original/4qKhgV.png",
+  "url": "https://gunroar.itch.io/my-little-comic",
+  "description": "A few comics I drew."
   },
   "https://hmmmgames.itch.io/dust-gallery": {
     "title": "Dust: Battle Gallery (FREE) by Gunroar",
