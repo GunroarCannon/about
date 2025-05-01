@@ -89,10 +89,10 @@
         }
       },
       {
-        "url": "https://gunroar.itch.io/coursegame",
-        "description": "Procedural course generator.",
+        "url": "hhttps://gunroar.itch.io/unicorn",
+        "description": "A platforming roguelike with a bloody cartoon theme.",
         "fallback": {
-          "title": "Coursegame",
+          "title": "Unicorn Blood Sacrifice",
           "image": "assets/game-placeholder.jpg"
         }
       }
@@ -129,6 +129,14 @@
         "description": "Environmental concept art.",
         "fallback": {
           "title": "Dust Gallery",
+          "image": "assets/art-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://gunroar.itch.io/my-little-comic",
+        "description": "Some comics drawn by me.",
+        "fallback": {
+          "title": "Comics",
           "image": "assets/art-placeholder.jpg"
         }
       },
