@@ -20,7 +20,7 @@
         "url": "https://hmmmgames.itch.io/rem-psyche",
         "description": "Psychological horror adventure game.",
         "fallback": {
-          "title": "Rem Psyche",
+          "title": "Rem Psycho",
           "image": "assets/game-placeholder.jpg"
         }
       },
@@ -29,6 +29,14 @@
         "description": "Fast-paced action roguelike.",
         "fallback": {
           "title": "Madcrawl",
+          "image": "assets/game-placeholder.jpg"
+        }
+      },
+      {
+        "url": "https://gunroar.itch.io/coursegame",
+        "description": "Be the course rep or die trying.",
+        "fallback": {
+          "title": "Course Rep 101",
           "image": "assets/game-placeholder.jpg"
         }
       },
@@ -66,7 +74,7 @@
       },
       {
         "url": "https://hmmmgames.itch.io/dragon",
-        "description": "Dragon taming simulator.",
+        "description": "Dragon artistic platformer.",
         "fallback": {
           "title": "Dragon Game",
           "image": "assets/game-placeholder.jpg"
