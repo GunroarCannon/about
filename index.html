@@ -1,49 +1,1714 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ugo Chime | Game & Web Developer</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <meta property="og:title" content="Ugo Chime | Game & Web Developer">
   <meta property="og:image" content="assets/avatar.jpg">
   <meta property="og:description" content="Portfolio of indie games, web projects, and digital art">
+  <style>
+    html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  osverflow-x: hidden;
+}
+
+  :root {
+    /* 🎚️ Global scale multiplier — change this to scale the entire UI */
+    --global-scale: 1;
+
+    --primary: #6C63FF;
+    --primary-dark: #554fd8;
+    --secondary: #FF6584;
+    --dark: #2A2D3E;
+    --darker: #1F2232;
+    --light: #F5F5F7;
+    --gray: #8A8D9F;
+    --success: #4CAF50;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --transition: all 0.3s ease;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.2);
+    --border-radius: calc(12px * var(--global-scale));
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  html {
+    font-size: calc(16px * var(--global-scale));
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--darker);
+    color: var(--light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-text-size-adjust: 100%;
+    transform-origin: top center;
+    transform: scale(var(--global-scale));
+  }
+
+  .container {
+    width: 100%;
+    max-width: calc(1200px * var(--global-scale));
+    margin: 0 auto;
+    padding: 0 calc(20px * var(--global-scale));
+  }
+
+  section {
+    padding: calc(80px * var(--global-scale)) 0;
+  }
+
+  h1, h2, h3, h4 {
+    margin-bottom: calc(1rem * var(--global-scale));
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, calc(3.5rem * var(--global-scale)));
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 5s infinite alternate;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, calc(2.5rem * var(--global-scale)));
+    text-align: center;
+    margin-bottom: calc(3rem * var(--global-scale));
+    position: relative;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: calc(-10px * var(--global-scale));
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(80px * var(--global-scale));
+    height: calc(4px * var(--global-scale));
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    border-radius: 2px;
+  }
+
+  p {
+    margin-bottom: calc(1.5rem * var(--global-scale));
+    color: var(--gray);
+    font-size: clamp(1rem, 2vw, calc(1.1rem * var(--global-scale)));
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: var(--transition);
+  }
+
+  a:hover {
+    color: var(--secondary);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: calc(12px * var(--global-scale)) calc(30px * var(--global-scale));
+    background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+    color: white;
+    border-radius: calc(30px * var(--global-scale));
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: calc(1rem * var(--global-scale));
+  }
+
+  .btn:hover {
+    transform: translateY(calc(-3px * var(--global-scale)));
+    box-shadow: var(--shadow-hover);
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: calc(2px * var(--global-scale)) solid var(--primary);
+    color: var(--primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--primary);
+    color: white;
+  }
+
+  /* Everything below remains same except now auto-scales via rem/em units */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(31, 34, 50, 0.95);
+    backdrop-filter: blur(10px);
+    padding: calc(20px * var(--global-scale)) 0;
+    transition: var(--transition);
+  }
+
+  header.scrolled {
+    padding: calc(15px * var(--global-scale)) 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: calc(1.8rem * var(--global-scale));
+    font-weight: 700;
+    color: var(--light);
+  }
+
+  .logo span {
+    color: var(--primary);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: calc(30px * var(--global-scale));
+  }
+
+  .nav-links a {
+    color: var(--light);
+    font-weight: 500;
+    position: relative;
+    font-size: calc(1rem * var(--global-scale));
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--light);
+    font-size: calc(1.5rem * var(--global-scale));
+    cursor: pointer;
+  }
+
+
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 20%, rgba(108, 99, 255, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(255, 101, 132, 0.1) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-wdidth: 600px;
+      animation: fadeInUp 1s ease;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      margin-bottom: 2rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center; /* center buttons */
+    }
+
+    .floating-elements {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      opacity: 0.1;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .floating-element:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      top: 10%;
+      right: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating-element:nth-child(2) {
+      width: 150px;
+      height: 150px;
+      top: 50%;
+      right: 20%;
+      animation-delay: 2s;
+    }
+
+    .floating-element:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      top: 70%;
+      right: 15%;
+      animation-delay: 4s;
+    }
+
+    /* About Me Section */
+    .about-me {
+      background: var(--dark);
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .avatar-container {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .avatar {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--primary);
+      box-shadow: var(--shadow);
+      animation: morph 8s ease-in-out infinite;
+    }
+
+    .avatar-container::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      z-index: -1;
+      animation: rotate 10s linear infinite;
+    }
+
+    .bio h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .bio h2 {
+      font-size: 1.0rem;
+      color: var(--secondary);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .bio h2::after {
+      left: 0;
+      transform: none;
+    }
+
+    /* Skills Section */
+    .skills {
+      text-align: center;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .skill-item {
+      background: var(--card-bg);
+      padding: 30px 20px;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-item:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .skill-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .skill-name {
+      font-weight: 600;
+    }
+
+    /* Projects Section */
+    .projects-section {
+      background: var(--dark);
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--light);
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      color: var(--gray);
+    }
+
+    .card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 600;
+    }
+
+    /* Art Gallery Section */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      height: 250px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: white;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+
+    .gallery-item:hover .gallery-item-content {
+      transform: translateY(0);
+    }
+
+    .gallery-item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: var(--primary);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      background: var(--dark);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 70vh;
+      display: block;
+    }
+
+    .lightbox-info {
+      padding: 20px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition);
+    }
+
+    .lightbox-close:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Contact Section */
+    .contact {
+      background: var(--dark);
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 25px;
+      background: var(--card-bg);
+      border-radius: 30px;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      transform: translateY(-5px);
+      background: var(--primary);
+    }
+
+    .social-icon {
+      font-size: 1.2rem;
+    }
+
+    .special-link {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .special-link .btn {
+      background: linear-gradient(45deg, var(--secondary), #ff8ea3);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--darker);
+      padding: 50px 0 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      margin-bottom: 30px;
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    #contact {
+      
+      scroll-margin-top: 80px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes morph {
+      0% {
+        border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+      }
+      50% {
+        border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+      }
+      100% {
+        border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .bio h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .avatar {
+        width: 250px;
+        height: 250px;
+      }
+
+      .floating-elements {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 15px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--darker);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 15px;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: var(--transition);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero-btns {
+        justify-content: center;
+      }
+
+      .hero {
+        text-align: center;
+      }
+
+      .cards-container,
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container {
+        width: 100%;
+        padding: 0 15px;
+      }
+
+      .cards-container,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .skill-item {
+        padding: 20px 15px;
+      }
+
+      .social-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .social-link {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-btns .btn {
+        width: 100%;
+        max-width: 250px;
+      }
+
+      .avatar {
+        width: 200px;
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cards-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .skills-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    body {
+  transform: scale(0.9);
+  transform-origin: top center;
+}
+  </style>
 </head>
 <body>
+  <!-- Header -->
+  <header id="header">
+    <div class="container nav-container">
+      <a href="#" class="logo">Ugo<span>Chime</span></a>
+      <nav>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#art">Art</a>
+          <a href="#contact">Contact</a>
+          <a href="#threeD">3D site</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <!-- <h1>Ugo Chime</h1> -->
+        <h2>Backend & Game Developer and Artist</h2>
+        <p>Passionate creator of interactive experiences, digital art, and innovative software solutions.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn">View My Work</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+    <div class="floating-elements">
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </div>
+  </section>
+
   <!-- About Me Section -->
-  <section class="about-me">
-    <div class="about-content">
-      <img src="avatar.png" alt="Ugo Chime" class="avatar">
-      <div class="bio">
-        <h1>Ugo Chime</h1>
-        <h2>Game & Web Developer</h2>
-        <p>
-          Helloooo, I'm Ugo Chime, also known online with the alias <em>Gunroar</em>. I'm a passionate developer specializing in 2D game creation, web development, and software innovation. 
-          I have extensive expertise in <strong>Lua</strong> and am well-versed in <strong>Python</strong>, <strong>HTML</strong>, <strong>JavaScript</strong>, and <strong>Java</strong>, with additional experience in <strong>C++</strong>.
-        </p>
-        <p>
-          I've developed a range of applications, indie games, and user-friendly websites that reflect my creativity and technical skills. My focus is on clean architecture and engaging user experiences.
-        </p>
+  <section class="about-me" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="avatar-container">
+          <img src="avatar.png" alt="Ugo Chime" class="avatar">
+        </div>
+        <div class="bio">
+          <h1>UGO CHIME</h1>
+          <!-- <h2>Game & Web Developer</h2> -->
+          <p>
+            Helloooo, I'm Ugo Chime, also known online through the alias <em>Gunroar</em>. I'm a passionate developer specializing in 2D game creation, web development, and software innovation. 
+            I have extensive experience in <strong>Lua</strong> and I am well-versed in <strong>Python</strong>, <strong>HTML</strong>, <strong>JavaScript</strong>, and <strong>Java</strong>, with additional experience in <strong>C++</strong>.
+          </p>
+          <p>
+            I've developed a range of applications, indie games, and user-friendly websites that reflect my creativity and technical skills. My focus is on clean architecture and engaging user experiences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-js-square"></i></div>
+          <div class="skill-name">JavaScript</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-python"></i></div>
+          <div class="skill-name">Python</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-java"></i></div>
+          <div class="skill-name">Java</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-code"></i></div>
+          <div class="skill-name">C++</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
+          <div class="skill-name">Lua</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-cube"></i></div>
+          <div class="skill-name">LibGDX</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fab fa-node-js"></i></div>
+          <div class="skill-name">NodeJS</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-cube"></i></div>
+          <div class="skill-name">ThreeJS</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+          <div class="skill-name">Kivy</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
+          <div class="skill-name">Godot</div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="fas fa-heart"></i></div>
+          <div class="skill-name">Love2D</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Projects Section -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <h2>Web Projects</h2>
+      <div class="cards-container" id="websites-container"></div>
 
-  <section id="websites">
-    <h2>Web Projects</h2>
-    <div class="cards-container" id="websites-container"></div>
-  </section>
-
-  <section id="games">
-    <h2>Game Projects</h2>
-    <div class="cards-container" id="games-container"></div>
+      <h2 style="margin-top: 80px;">Game Projects</h2>
+      <div class="cards-container" id="games-container"></div>
+    </div>
   </section>
 
   <!-- Art Section -->
   <section id="art">
-    <h2>Digital Art</h2>
-    <div class="cards-container" id="art-container"></div>
+    <div class="container">
+      <h2>Digital Art Gallery</h2>
+      <div class="gallery-filters" id="galleryFilters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Sketch">Sketch</button>
+        <button class="filter-btn" data-filter="Comic">Comic</button>
+        <button class="filter-btn" data-filter="Portrait">Portrait</button>
+        <button class="filter-btn" data-filter="Action">Action</button>
+        <button class="filter-btn" data-filter="Experimental">Experimental</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
   </section>
 
-  <script src="script.js"></script>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <div class="lightbox-close" id="lightboxClose">
+        <i class="fas fa-times"></i>
+      </div>
+      <img id="lightboxImage" src="" alt="">
+      <div class="lightbox-info">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDescription"></p>
+        <div id="lightboxTier"></div>
+        <div class="gallery-item-tags" id="lightboxTags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <p>Feel free to reach out for collaborations or just to say hello!</p>
+      
+      <div class="social-links">
+        <a href="https://github.com/GunroarCannon" class="social-link" target="_blank">
+          <i class="fab fa-github social-icon"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="https://twitter.com/therealgunroar" class="social-link" target="_blank">
+          <i class="fab fa-twitter social-icon"></i>
+          <span>Twitter</span>
+        </a>
+        <a href="https://t.me/therealgunroar" class="social-link" target="_blank">
+          <i class="fab fa-telegram social-icon"></i>
+          <span>Telegram</span>
+        </a>
+        <a href="mailto:gunroarcannon@gmail.com" class="social-link">
+          <i class="fas fa-envelope social-icon"></i>
+          <span>Email</span>
+        </a>
+      </div>
+
+      <div class="special-link" id="threeD">
+        <p>Check out my interactive 3D portfolio</p>
+        <a href="https://ugochime.onrender.com" class="btn" target="_blank">Explore 3D Version</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="logo">Ugo<span>Chime</span></div>
+        <p>Game & Web Developer | Digital Artist</p>
+      </div>
+      <div class="copyright">
+        &copy; 2023 Ugo Chime. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Configuration
+    const config = {
+        slotsOpen: true,
+        nextAvailableDate: "2023-12-01",
+        showWalletPublicly: false,
+        socialLinks: {
+            x: "https://twitter.com/therealgunroar",
+            itch: "https://hmmmgames.itch.io",
+            buymeacoffee: "https://buymeacoffee.com/gunroar"
+        }
+    };
+
+    // Tier names
+    const tierList = ["Doodle Dash", "Brush Wave", "Canvas Burst"];
+
+    // Gallery Data
+    const works = [
+      {
+        id: 1,
+        title: "Sketch Dragon",
+        thumbnailUrl: "./assets/sketch_dragon.png",
+        description: "Loose pencil sketch of a dragon, showing rough motion and flow lines.",
+        tags: ["Sketch", "WIP"],
+        tier: 0
+      },
+      {
+        id: 2,
+        title: "Ad Comic",
+        thumbnailUrl: "./assets/ad_comic.png",
+        description: "Mini comic styled like an ad — bold composition and expressive characters.",
+        tags: ["Comic"],
+        tier: 1
+      },
+      {
+        id: 3,
+        title: "Animation Panel",
+        thumbnailUrl: "./assets/animation.png",
+        description: "Frame-by-frame sequence experiment exploring smooth gesture animation.",
+        tags: ["Animation", "Experimental", "Complex"],
+        tier: 2
+      },
+      {
+        id: 4,
+        title: "Dogo Stonks",
+        thumbnailUrl: "./assets/avatar.png",
+        description: "Only here for business and gentle head pats.",
+        tags: ["Portrait"],
+        tier: 1
+      },
+      {
+        id: 5,
+        title: "Bluey Comic",
+        thumbnailUrl: "./assets/bluey_comic.png",
+        description: "A comedic short comic inspired by one of the best kids shows.",
+        tags: ["Comic"],
+        tier: 1
+      },
+      {
+        id: 6,
+        title: "Cabin PNG",
+        thumbnailUrl: "./assets/cabin.png",
+        description: "A cozy cabin illustration, warm tones and autumn mood.",
+        tags: ["Environment", "Digital Painting"],
+        tier: 2
+      },
+      {
+        id: 7,
+        title: "Coooool dude",
+        thumbnailUrl: "./assets/commission_to_be.png",
+        description: "Art showing color layout and sketch planning.",
+        tags: ["WIP", "Character Design"],
+        tier: 2
+      },
+      {
+        id: 8,
+        title: "Frog Samurai",
+        thumbnailUrl: "./assets/complex-art.jpg",
+        description: "Full blown comic page",
+        tags: ["Illustration", "Complex", "Comic", "Action"],
+        tier: 2
+      },
+      {
+        id: 9,
+        title: "Dust: Battle Beneath",
+        thumbnailUrl: "./assets/custom.png",
+        description: "Art done for an old game of mine.",
+        tags: ["Illustration", "Complex", "Action"],
+        tier: 2
+      },
+      {
+        id: 10,
+        title: "The Defect STS",
+        thumbnailUrl: "./assets/defect_sts.png",
+        description: "Fanart for a character from famous indie game, Slay the Spire.",
+        tags: ["Experimental","Character Design", "Action"],
+        tier: 1
+      },
+      {
+        id: 11,
+        title: "Dust Simple Art",
+        thumbnailUrl: "./assets/dust_simple_art.png",
+        description: "Minimalist warm-tone illustration — dust particles and light reflections.",
+        tags: ["Experimental", "Stylized"],
+        tier: 1
+      },
+      {
+        id: 12,
+        title: "Elk Hunt",
+        thumbnailUrl: "./assets/elkhunt.png",
+        description: "Dynamic hunter scene. Or hunted scene more like.",
+        tags: ["Action", "Illustration", "Comic"],
+        tier: 0
+      },
+      {
+        id: 13,
+        title: "For Someone",
+        thumbnailUrl: "./assets/for_someone.png",
+        description: "Chill character portrait — gift art showing introspective mood.",
+        tags: ["Portrait"],
+        tier: 2
+      },
+      {
+        id: 14,
+        title: "Goat PNG",
+        thumbnailUrl: "./assets/goat.png",
+        description: "Stylized anthropomorphic goat with cool color tones and strong silhouette.",
+        tags: ["Character Design"],
+        tier: 1
+      },
+      {
+        id: 15,
+        title: "Hand Drawn JPG",
+        thumbnailUrl: "./assets/handdrawn.jpg",
+        description: "Purely traditional pencil sketch showing raw line quality.",
+        tags: ["Sketch", "Traditional", "Complex"],
+        tier: 1
+      },
+      {
+        id: 16,
+        title: "Lion Art",
+        thumbnailUrl: "./assets/lion_art.png",
+        description: "Majestic lion portrait with bold brushstrokes and fiery mane.",
+        tags: ["Animal", "Digital Painting", "Character Design", "Complex"],
+        tier: 2
+      },
+      {
+        id: 17,
+        title: "Manga PNG",
+        thumbnailUrl: "./assets/manga.png",
+        description: "Short manga scene, yo! strong tones, impactful framing.",
+        tags: ["Manga", "Comic", "Complex"],
+        tier: 1
+      },
+      {
+        id: 18,
+        title: "Manga In Progress",
+        thumbnailUrl: "./assets/manga_in_progress.png",
+        description: "Work-in-progress manga panel layout with early linework.",
+        tags: ["Manga", "WIP"],
+        tier: 1
+      },
+      {
+        id: 19,
+        title: "Medium Art",
+        thumbnailUrl: "./assets/medium-art.png",
+        description: "Stylized portrait experiment blending digital and traditional feels.",
+        tags: ["Portrait", "Stylized"],
+        tier: 1
+      },
+      {
+        id: 20,
+        title: "Megalovania Moonlight",
+        thumbnailUrl: "./assets/megalovania_moonlight.png",
+        description: "Art inspired by Megalovania — moonlit colors, bold energy.",
+        tags: ["Stylized"],
+        tier: 2
+      },
+      {
+        id: 21,
+        title: "Monke",
+        thumbnailUrl: "./assets/monke.png",
+        description: "Comedic monkey character study, heavy line art style.",
+        tags: ["Character Design"],
+        tier: 1
+      },
+      {
+        id: 22,
+        title: "President Comic",
+        thumbnailUrl: "./assets/president_comic.png",
+        description: "Short political comic with satirical overtones.",
+        tags: ["Comic"],
+        tier: 0
+      },
+      {
+        id: 23,
+        title: "Ragdollman Girl",
+        thumbnailUrl: "./assets/ragdollman_girl.png",
+        description: "Comic page featuring a villain from my comic Ragdollman, expressive story tone.",
+        tags: ["Comic", "Digital Painting"],
+        tier: 1
+      },
+      {
+        id: 24,
+        title: "Ragdollman Stones",
+        thumbnailUrl: "./assets/ragdollman_stones.png",
+        description: "Comic about power and burden.",
+        tags: ["Manga"],
+        tier: 0
+      },
+      {
+        id: 25,
+        title: "Ragdollman Train",
+        thumbnailUrl: "./assets/ragdollman_train.png",
+        description: "Fast-paced action comic panel — motion blur and tension.",
+        tags: ["Action", "Comic"],
+        tier: 0
+      },
+      {
+        id: 26,
+        title: "Rem Psycho",
+        thumbnailUrl: "./assets/rem_psycho.png",
+        description: "Surreal portrait with psychedelic energy — dreamlike patterns.",
+        tags: ["Experimental", "Portrait"],
+        tier: 1
+      },
+      {
+        id: 27,
+        title: "Spheron Girl",
+        thumbnailUrl: "./assets/spheron_girl.png",
+        description: "Soft portrait with curved perspective and saturated tones.",
+        tags: ["Portrait"],
+        tier: 1
+      },
+      {
+        id: 28,
+        title: "Staking Comic",
+        thumbnailUrl: "./assets/staking_comic.png",
+        description: "Short comic about staking and patience — witty and expressive.",
+        tags: ["Comic"],
+        tier: 1
+      },
+      {
+        id: 29,
+        title: "Trad Art",
+        thumbnailUrl: "./assets/trad_art.png",
+        description: "Traditional drawing scanned — visible pencil texture and tones.",
+        tags: ["Traditional", "Sketch", "Action"],
+        tier: 0
+      },
+      {
+        id: 30,
+        title: "Work In Progress",
+        thumbnailUrl: "./assets/work_in_progress.png",
+        description: "Digital Frog Samurai comic still in progress — visible layers and linework.",
+        tags: ["WIP"],
+        tier: 2
+      },
+      {
+        id: 31,
+        title: "Work In Progress 2",
+        thumbnailUrl: "./assets/work_in_progress_2.png",
+        description: "Alternate stage of same comic, showing refinement.",
+        tags: ["WIP"],
+        tier: 1
+      }
+    ];
+
+    works.forEach(work => work.tags.push(tierList[work.tier]));
+
+    // DOM Elements
+    const themeToggle = document.getElementById('themeToggle');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const galleryFilters = document.getElementById('galleryFilters');
+    const galleryGrid = document.getElementById('galleryGrid');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDescription = document.getElementById('lightboxDescription');
+    const lightboxTier = document.getElementById('lightboxTier');
+    const lightboxTags = document.getElementById('lightboxTags');
+
+    // Initialize the site
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeTheme();
+        renderGalleryFilters();
+        renderGallery();
+        setupEventListeners();
+        initializeScrollEffects();
+    });
+
+    // Theme Toggle
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        updateThemeToggleText(savedTheme);
+    }
+
+    function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeToggleText(newTheme);
+    }
+
+    function updateThemeToggleText(theme) {
+        if (themeToggle) {
+            themeToggle.textContent = theme === 'light' ? '🌙' : '☀️';
+        }
+    }
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        navLinks.classList.toggle('active');
+    }
+
+    // Render Gallery Filters
+    function renderGalleryFilters() {
+        // Get all unique tags from works
+        const allTags = [...new Set(works.flatMap(work => work.tags))];
+        
+        // Add tag filters
+        allTags.forEach(tag => {
+            const filterBtn = document.createElement('button');
+            filterBtn.className = 'filter-btn';
+            filterBtn.textContent = tag;
+            filterBtn.setAttribute('data-filter', tag);
+            galleryFilters.appendChild(filterBtn);
+        });
+    }
+
+    // Render Gallery
+    function renderGallery(filter = 'all') {
+        galleryGrid.innerHTML = '';
+        
+        const filteredWorks = filter === 'all' ? 
+            works : works.filter(work => work.tags.includes(filter));
+        
+        filteredWorks.forEach(work => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.setAttribute('data-id', work.id);
+            
+            galleryItem.innerHTML = `
+                <img src="${work.thumbnailUrl}" alt="${work.title}" onerror="this.src='https://via.placeholder.com/250x250?text=Image+Not+Found'">
+                <div class="gallery-item-content">
+                    <h4>${work.title}</h4>
+                    <div class="gallery-item-tags">
+                        ${work.tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            galleryGrid.appendChild(galleryItem);
+        });
+    }
+
+    // Lightbox Functions
+    function openLightbox(workId) {
+        const work = works.find(w => w.id === workId);
+        if (!work) return;
+        
+        lightboxImage.src = work.thumbnailUrl;
+        lightboxImage.alt = work.title;
+        lightboxTitle.textContent = work.title;
+        lightboxDescription.textContent = work.description;
+        lightboxTier.innerHTML = `<strong>Tier:</strong> ${tierList[work.tier]}`;
+        
+        lightboxTags.innerHTML = '';
+        work.tags.forEach(tag => {
+            const tagEl = document.createElement('span');
+            tagEl.className = 'tag';
+            tagEl.textContent = tag;
+            lightboxTags.appendChild(tagEl);
+        });
+        
+        lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+    }
+
+    // Scroll Effects
+    function initializeScrollEffects() {
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            
+            // Animate elements on scroll
+            const animateElements = document.querySelectorAll('.skill-item, .card, .gallery-item');
+            
+            animateElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // Initial state for animation
+        const animateElements = document.querySelectorAll('.skill-item, .card, .gallery-item');
+        animateElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        // Trigger initial animation
+        setTimeout(() => {
+            window.dispatchEvent(new Event('scroll'));
+        }, 100);
+    }
+
+    // Setup Event Listeners
+    function setupEventListeners() {
+        // Mobile menu
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+        
+        // Gallery filters
+        if (galleryFilters) {
+            galleryFilters.addEventListener('click', function(e) {
+                if (e.target.classList.contains('filter-btn')) {
+                    // Update active filter
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                    
+                    // Filter gallery
+                    const filter = e.target.getAttribute('data-filter');
+                    renderGallery(filter);
+                }
+            });
+        }
+        
+        // Gallery items (event delegation)
+        if (galleryGrid) {
+            galleryGrid.addEventListener('click', function(e) {
+                const galleryItem = e.target.closest('.gallery-item');
+                if (galleryItem) {
+                    const workId = parseInt(galleryItem.getAttribute('data-id'));
+                    openLightbox(workId);
+                }
+            });
+        }
+        
+        // Lightbox close
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+        }
+        if (lightbox) {
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+    }
+
+    // Keep your existing script.js functionality
+    const API_URL = "https://link-previewer-efsv.onrender.com/preview?url=";
+    const FALLBACK_IMAGE = "fallback.jpg";
+    let staticPreviews = {};
+
+    // Load static preview data
+    async function loadStaticPreviews() {
+      try {
+        const response = await fetch('preview.json');
+        staticPreviews = response.ok ? await response.json() : {};
+      } catch (error) {
+        console.error("Couldn't load previews.json", error);
+        staticPreviews = {};
+      }
+      console.log(staticPreviews)
+    }
+
+    // Get preview with static data first, then try API
+    async function getPreview(url) {
+      // Return static preview if available
+      if (staticPreviews[url]) {
+        console.log("Nice Static Preview available")
+        return staticPreviews[url];
+      }
+      
+      // Otherwise try the API
+      try {
+        const response = await fetch(API_URL + encodeURIComponent(url));
+        if (!response.ok) throw new Error(`Broo API error: ${response.status}`);
+        
+        const data = await response.json();
+        return {
+          title: data.title || new URL(url).hostname,
+          description: data.description || "No description available",
+          image: data.image || FALLBACK_IMAGE,
+          url: url
+        };
+      } catch (error) {
+        console.error(`Brooo API failed for ${url}:`, error);
+        throw error;
+      }
+    }
+
+    function createCard(preview, container) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${preview.image}" 
+             alt="${preview.title}" 
+             onerror="this.src='${FALLBACK_IMAGE}'">
+        <div class="card-content">
+          <h3>${preview.title}</h3>
+          <p>${preview.description}</p>
+          <a href="${preview.url}" target="_blank">Visit →</a>
+        </div>
+      `;
+      container.appendChild(card);
+    }
+
+    function updateCard(url, preview, container) {
+      const cards = container.querySelectorAll('.card');
+      for (const card of cards) {
+        const cardUrl = card.querySelector('a').href;
+        if (cardUrl === url) {
+          card.innerHTML = `
+            <img src="${preview.image}" 
+                 alt="${preview.title}" 
+                 onerror="this.src='${FALLBACK_IMAGE}'">
+            <div class="card-content">
+              <h3>${preview.title}</h3>
+              <p>${preview.description}</p>
+              <a href="${preview.url}" target="_blank">Visit →</a>
+            </div>
+          `;
+          break;
+        }
+      }
+    }
+
+    function showErrorUI() {
+      document.querySelectorAll('.cards-container').forEach(container => {
+        container.innerHTML = `
+          <div class="error-notice">
+            <p>Content failed to load. Please check your connection or 
+            <a href="javascript:location.reload()">try again</a>.</p>
+          </div>
+        `;
+      });
+    }
+
+    async function loadSection(sectionId, projects) {
+      const container = document.getElementById(`${sectionId}-container`);
+      if (!container) return;
+
+      // Load cards immediately with static/fallback data
+      projects.forEach(project => {
+        const preview = staticPreviews[project.url] || {
+          title: project.fallback?.title || new URL(project.url).hostname,
+          description: project.description || "Click to view content",
+          image: project.fallback?.image || FALLBACK_IMAGE,
+          url: project.url
+        };
+        createCard(preview, container);
+      });
+
+      // Refresh previews in background
+      refreshPreviews(projects, container);
+    }
+
+    async function refreshPreviews(projects, container) {
+      for (const project of projects) {
+        try {
+          const preview = await getPreview(project.url);
+          updateCard(project.url, preview, container);
+        } catch (error) {
+          console.warn(`Couldn't refresh ${project.url}`, error);
+        }
+      }
+    }
+
+    async function loadAllProjects() {
+      try {
+        const response = await fetch('projects.json');
+        if (!response.ok) throw new Error("Failed to load projects.json");
+        const projectData = await response.json();
+
+        await loadSection('websites', projectData.websites);
+        await loadSection('games', projectData.games);
+        
+      } catch (error) {
+        console.error("Error loading projects:", error);
+        showErrorUI();
+      }
+    }
+
+    // Initialize projects
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadStaticPreviews();
+      loadAllProjects();
+    });
+
+    // Mobile menu functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+});
+    
+  </script>
 </body>
 </html>
