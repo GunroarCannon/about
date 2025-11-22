@@ -365,13 +365,29 @@
       margin-top: 50px;
     }
 
-    .skill-item {
+    .skill-istem {
       background: var(--card-bg);
       padding: 30px 20px;
       border-radius: var(--border-radius);
       transition: var(--transition);
       box-shadow: var(--shadow);
     }
+.skill-item {
+  background: var(--card-bg);
+  padding: 15px 10px;    /* MUCH smaller padding */
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  /* prevents tall empty space */
+  gap: 8px;
+
+  width: 100px;   /* fixed width */
+}
 
     .skill-item:hover {
       transform: translateY(-10px);
@@ -379,10 +395,19 @@
     }
 
     .skill-icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
+      fosnt-size: 3rem;
+      margin-bottom: 5px;
+  width: 50px;
+  height: 50px;
       color: var(--primary);
     }
+    
+.skill-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 
     .skill-name {
       font-weight: 600;
@@ -847,7 +872,200 @@
   transform: scale(0.9);
   transform-origin: top center;
 }
+/* --- New Constellation Styles --- */
+
+.skills-constellation-view {
+    padding: 80px 0;
+    min-height: 80vh;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    /* NEW: Star Background Container */
+    z-index: 1; /* Ensure stars are behind content */
+}
+
+/* NEW: Star Field Container */
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Stars below constellation nodes/links */
+    background: transparent;
+}
+
+/* Base Star Styles */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle linear infinite;
+}
+
+.skills-constellation-view h2 {
+    margin-bottom: 10px;
+}
+
+.skills-constellation-view .description {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--gray);
+}
+/* --- New Constellation Styles: Complete Snippet --- */
+
+.skills-constellation-view {
+    padding: 80px 0;
+    min-height: 80vh;
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    z-index: 1; 
+}
+
+/* Star Field Container */
+.star-field {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Stars below constellation nodes/links */
+    background: transparent;
+}
+
+/* Base Star Styles */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle linear infinite;
+}
+
+.skills-constellation-view h2 {
+    margin-bottom: 10px;
+}
+
+.skills-constellation-view .description {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--gray);
+}
+
+.constellation-grid {
+    position: relative;
+    width: 100%;
+    min-height: 600px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    z-index: 5; /* Keep the grid above the stars */
+}
+
+/* Node Wrapper (The clickable and positionable element) */
+.constellation-node-link { 
+    position: absolute;
+    display: block;
+    /* width/height are set dynamically by JS for size randomization */
+    z-index: 10; /* Nodes MUST be above links (8) and stars (1) */
+    transition: transform 0.3s ease;
+    /* Floating Animation */
+    animation: float 6s ease-in-out infinite; 
+}
+
+/* Inner Node (The circle visual) */
+.constellation-node {
+    width: 100%; /* Take 100% of the parent link's size */
+    height: 100%; /* Take 100% of the parent link's size */
+    background: var(--darker);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    border: 3px solid var(--primary);
+}
+
+.constellation-node-link:hover .constellation-node {
+     /* Only scale the visual node, not the positionable link wrapper */
+     transform: scale(1.1); 
+}
+
+.constellation-node-link:hover {
+    animation-play-state: paused; /* Pause the float when hovering */
+}
+
+
+.constellation-node .skill-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Size is set by JS for dynamic scaling */
+}
+
+.constellation-node .skill-icon img {
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain;
+}
+
+.constellation-node .skill-name {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    color: var(--light);
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* Styles for the connecting lines (Links) */
+.constellation-link {
+    position: absolute;
+    height: 2px;
+    background-color: var(--primary);
+    opacity: 0.5;
+    transform-origin: center center; 
+    z-index: 8; /* Links are behind nodes (10) but above stars (1) */
+    pointer-events: none;
+    transition: background-color 0.3s, opacity 0.3s, box-shadow 0.3s;
+}
+
+/* Highlighted States */
+.constellation-node.highlighted {
+    border-color: var(--secondary);
+    box-shadow: 0 0 30px var(--secondary);
+}
+
+.constellation-link.highlighted {
+    background-color: var(--secondary);
+    opacity: 1;
+    box-shadow: 0 0 5px var(--secondary);
+}
+
+/* Keyframe Animations */
+@keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        /* Gently move horizontally and vertically */
+        transform: translate(3px, -3px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
 </head>
 <body>
   <!-- Header -->
@@ -911,58 +1129,116 @@
       </div>
     </div>
   </section>
+  <section class="skills-constellation-view" id="skillConstellation">
+    <div class="container">
+        <h2>Skill Constellation Map</h2>
+        <p class="description">A visualization of my technical skills and the interdependencies between them.</p>
+        
+        <div class="star-field" id="starField"></div>
+
+        <div class="constellation-grid" id="constellationGrid">
+            </div>
+    </div>
+</section>
+  <div id="skills-constellation" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:1;"></div>
 
   <!-- Skills Section -->
   <section class="skills" id="skills">
-    <div class="container">
-      <h2>Technical Skills</h2>
-      <div class="skills-container">
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fab fa-js-square"></i></div>
-          <div class="skill-name">JavaScript</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fab fa-python"></i></div>
-          <div class="skill-name">Python</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fab fa-java"></i></div>
-          <div class="skill-name">Java</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fas fa-code"></i></div>
-          <div class="skill-name">C++</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
-          <div class="skill-name">Lua</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fas fa-cube"></i></div>
-          <div class="skill-name">LibGDX</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fab fa-node-js"></i></div>
-          <div class="skill-name">NodeJS</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fas fa-cube"></i></div>
-          <div class="skill-name">ThreeJS</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
-          <div class="skill-name">Kivy</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
-          <div class="skill-name">Godot</div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-icon"><i class="fas fa-heart"></i></div>
-          <div class="skill-name">Love2D</div>
-        </div>
+ <div class="container">
+  <h2>Technical Skills</h2>
+  <div class="skills-container">
+
+    <!-- JavaScript -->
+    <a class="skill-item" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+      <div class="skill-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" />
       </div>
-    </div>
+      <div class="skill-name">JavaScript</div>
+    </a>
+
+    <!-- Python -->
+    <a class="skill-item" href="https://www.python.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://www.python.org/static/opengraph-icon-200x200.png" />
+      </div>
+      <div class="skill-name">Python</div>
+    </a>
+
+    <!-- Java -->
+    <a class="skill-item" href="https://www.java.com/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg" />
+      </div>
+      <div class="skill-name">Java</div>
+    </a>
+
+    <!-- C++ -->
+    <a class="skill-item" href="https://isocpp.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" />
+      </div>
+      <div class="skill-name">C++</div>
+    </a>
+
+    <!-- Lua -->
+    <a class="skill-item" href="https://www.lua.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Lua-Logo.svg" />
+      </div>
+      <div class="skill-name">Lua</div>
+    </a>
+
+    <!-- LibGDX -->
+    <a class="skill-item" href="https://libgdx.com/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://libgdx.com/assets/images/logo.png" />
+      </div>
+      <div class="skill-name">LibGDX</div>
+    </a>
+
+    <!-- NodeJS -->
+    <a class="skill-item" href="https://nodejs.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://nodejs.org/static/images/logo.svg" />
+      </div>
+      <div class="skill-name">NodeJS</div>
+    </a>
+
+    <!-- ThreeJS -->
+    <a class="skill-item" href="https://threejs.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://raw.githubusercontent.com/mrdoob/three.js/38bf5f47a8c01a1d12d16a41b4097dc9ee31daad/files/icon.svg" />
+      </div>
+      <div class="skill-name">ThreeJS</div>
+    </a>
+
+    <!-- Kivy -->
+    <a class="skill-item" href="https://kivy.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="./kivy.png" />
+      </div>
+      <div class="skill-name">Kivy</div>
+    </a>
+
+    <!-- Godot -->
+    <a class="skill-item" href="https://godotengine.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg" />
+      </div>
+      <div class="skill-name">Godot</div>
+    </a>
+
+    <!-- Love2D -->
+    <a class="skill-item" href="https://love2d.org/" target="_blank">
+      <div class="skill-icon">
+        <img src="./love2d.png" />
+      </div>
+      <div class="skill-name">Love2D</div>
+    </a>
+
+  </div>
+</div>
+
   </section>
 
   <!-- Projects Section -->
@@ -1012,7 +1288,7 @@
   <section class="contact" id="contact">
     <div class="container">
       <h2>Get In Touch</h2>
-      <p>Feel free to reach out for collaborations or just to say hello!</p>
+      <p>Feel free to reach out for collaborations or just to say hello! (Really, just say hello.)</p>
       
       <div class="social-links">
         <a href="https://github.com/GunroarCannon" class="social-link" target="_blank">
@@ -1708,7 +1984,414 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+ // --- CENTRAL CONSTELLATION NODE SETUP ---
+// Define a base node size for calculation. The actual size will be randomized from this.
+const BASE_NODE_SIZE = 80; 
+
+const centralNode = { 
+    name: "Portfolio", 
+    src: "ugochime.png", 
+    href: "https://github.com/GunroarCannon", 
+    x: 50, 
+    y: 50, nx:50,ny:30, 
+    links: ["C++","Java","Love2D","NodeJS","Python"],
+    size: BASE_NODE_SIZE * 1.2 // Make the central node slightly larger
+};
+
+const skillNodes = [
+    { name: "JavaScript", src: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", links: ["NodeJS", "ThreeJS"] },
+    { name: "Python", src: "https://www.python.org/static/opengraph-icon-200x200.png", href: "https://www.python.org/", links: ["Kivy"] },
+    { name: "Java", src: "https://upload.wikimedia.org/wikipedia/en/3/30/Java_programming_language_logo.svg", href: "https://www.java.com/", links: ["LibGDX"] },
+    { name: "C++", src: "https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg", href: "https://isocpp.org/", links: ["Love2D", "Godot"] },
+    { name: "Lua", src: "https://upload.wikimedia.org/wikipedia/commons/c/cf/Lua-Logo.svg", href: "https://www.lua.org/", links: ["Love2D"] },
+    { name: "LibGDX", src: "https://libgdx.com/assets/images/logo.png", href: "https://libgdx.com/", links: ["Java"] },
+    { name: "NodeJS", src: "https://nodejs.org/static/images/logo.svg", href: "https://nodejs.org/", links: ["JavaScript"] },
+    { name: "ThreeJS", src: "https://raw.githubusercontent.com/mrdoob/three.js/38bf5f47a8c01a1d12d16a41b4097dc9ee31daad/files/icon.svg", href: "https://threejs.org/", links: ["JavaScript"] },
+    { name: "Kivy", src: "./kivy.png", href: "https://kivy.org/", links: ["Python"] },
+    { name: "Godot", src: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg", href: "https://godotengine.org/", links: ["C++"] },
+    { name: "Love2D", src: "./love2d.png", href: "https://love2d.org/", links: ["Lua","C++"] }
+];
+
+// 1. Assign fixed, visually appealing coordinates (as a percentage of the container)
+const skillPositions = [
+    { name: "JavaScript", x: 20, y: 10 },
+    { name: "Python", x: 65, y: 15, nx:80 },
+    { name: "Java", x: 10, y: 35, ny:20 },
+    { name: "C++", x: 90, y: 35, nx:100,ny:30 },
+    { name: "Lua", x: 15, y: 80,ny:30,nx:5 },
+    { name: "LibGDX", x: 25, y: 25, ny:20 },
+    { name: "NodeJS", x: 35, y: 10, nx:20 },
+    { name: "ThreeJS", x: 5, y: 15, nx:20 },
+    { name: "Kivy", x: 80, y: 10, nx:50,ny:20 },
+    { name: "Godot", x: 85, y: 80, nx:100, ny:40 },
+    { name: "Love2D", x: 35, y: 85, ny:50, nx:20 }
+];
+
+// Function to get a randomized size for a skill node
+function getRandomNodeSize() {
+    // Random size between 0.7x and 1.3x the base size
+    const scale = Math.random() * 0.6 + 0.7; // Generates a number between 0.7 and 1.3
+    return Math.round(BASE_NODE_SIZE * scale);
+}
+
+// Merge data and add the central node
+const nodesData = [centralNode, ...skillNodes.map(node => {
+    const pos = skillPositions.find(p => p.name === node.name);
+    // 💥 FIX 2: Ensure all skills link to the central node ('Portfolio')
+    const linksToCentral = node.links.includes(centralNode.name) ? node.links : [...node.links, centralNode.name]; 
+    return { 
+        ...node, 
+        ...pos, 
+        links: linksToCentral,
+        size: getRandomNodeSize() // 💥 FIX 3: Assign randomized size
+    }; 
+})];
+
+const nameToNodeMap = nodesData.reduce((map, node) => {
+    map[node.name] = node;
+    return map;
+}, {});
+
+// --- Star Field Generation (Unchanged) ---
+
+function generateStarField(count = 100) {
+    const starField = document.getElementById('starField');
+    if (!starField) return;
+    starField.innerHTML = ''; 
+
+    for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+
+        const size = Math.random() * 2 + 1; 
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+
+        const duration = Math.random() * 2 + 1; 
+        star.style.animationDuration = `${duration}s`;
+        star.style.animationDelay = `${Math.random() * 2}s`;
+
+        starField.appendChild(star);
+    }
+}
+
+
+// --- Main Constellation Renderer ---
+function renderConstellation() {
+    const grid = document.getElementById('constellationGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
     
+    // Draw nodes first
+    nodesData.forEach(node => {
+        createNodeElement(node, grid);
+    });
+
+    // Wait for DOM rendering then draw links
+    setTimeout(() => {
+        drawAllLinks();
+    }, 50);
+}
+
+function createNodeElement(node, grid) {
+    const NODE_SIZE = node.size;
+    const HALF_NODE = NODE_SIZE / 2;
+
+    const nodeLink = document.createElement('a');
+    nodeLink.className = 'constellation-node-link';
+    nodeLink.href = node.href;
+    nodeLink.target = "_blank";
+    nodeLink.setAttribute('data-skill-name', node.name);
+    
+    nodeLink.style.width = `${NODE_SIZE}px`;
+    nodeLink.style.height = `${NODE_SIZE}px`;
+    nodeLink.style.left = `calc(${node.x}% - ${HALF_NODE}px)`;
+    nodeLink.style.top = `calc(${node.y}% - ${HALF_NODE}px)`;
+
+    const nodeEl = document.createElement('div');
+    nodeEl.className = 'constellation-node';
+    nodeEl.setAttribute('data-skill-name', node.name);
+    
+    const iconSize = NODE_SIZE * 0.5;
+    nodeEl.innerHTML = `
+        <div class="skill-icon" style="width: ${iconSize}px; height: ${iconSize}px;">
+            <img src="${node.src}" alt="${node.name}" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        <!--div class="skill-name">${node.name}</div>
+    `;
+    
+    nodeLink.appendChild(nodeEl);
+    nodeEl.addEventListener('mouseenter', () => highlightConnections(node.name));
+    nodeEl.addEventListener('mouseleave', () => unhighlightConnections());
+
+    grid.appendChild(nodeLink);
+}
+
+function drawAllLinks() {
+    const grid = document.getElementById('constellationGrid');
+    if (!grid) return;
+    
+    // Clear any existing links and debug elements
+    const existingLinks = grid.querySelectorAll('.constellation-link, .debug-dot, .debug-label');
+    existingLinks.forEach(el => el.remove());
+    
+    const gridRect = grid.getBoundingClientRect();
+    
+    console.log('Grid dimensions:', {
+        width: gridRect.width,
+        height: gridRect.height,
+        left: gridRect.left,
+        top: gridRect.top,
+        padding: getComputedStyle(grid).padding
+    });
+
+    nodesData.forEach(nodeA => {
+        const targetNodes = nodeA.links.map(name => nameToNodeMap[name]).filter(Boolean);
+
+        targetNodes.forEach(nodeB => {
+            const indexA = nodesData.indexOf(nodeA);
+            const indexB = nodesData.indexOf(nodeB);
+            
+            if (indexA < indexB || nodeA.name === centralNode.name) { 
+                drawSingleLink(grid, gridRect, nodeA, nodeB);
+            }
+        });
+    });
+}
+
+function drawSingleLink(grid, gridRect, nodeA, nodeB) {
+    // Get the actual DOM elements
+    const nodeADOM = grid.querySelector(`.constellation-node-link[data-skill-name="${nodeA.name}"]`);
+    const nodeBDOM = grid.querySelector(`.constellation-node-link[data-skill-name="${nodeB.name}"]`);
+
+    if (!nodeADOM || !nodeBDOM) {
+        console.warn(`Could not find DOM elements for: ${nodeA.name} -> ${nodeB.name}`);
+        return;
+    }
+    
+    // Get actual rendered positions
+    const rectA = nodeADOM.getBoundingClientRect();
+    const rectB = nodeBDOM.getBoundingClientRect();
+
+    // Calculate centers in viewport coordinates
+    const centerA = {
+        x: rectA.left + rectA.width / 2,
+        y: rectA.top + rectA.height / 2
+    };
+    
+    const centerB = {
+        x: rectB.left + rectB.width / 2,
+        y: rectB.top + rectB.height / 2
+    };
+
+    // Convert to grid-relative coordinates (account for grid position and scroll)
+    const x1 = centerA.x - gridRect.left+(nodeA.nx||0);
+    const y1 = centerA.y - gridRect.top+(nodeA.ny||0);
+    const x2 = centerB.x - gridRect.left+(nodeB.nx||0);
+    const y2 = centerB.y - gridRect.top+(nodeB.ny || 0);
+
+    const dx = x2 - x1;
+    const dy = y2 - y1;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+    // Create the link
+    const link = document.createElement('div');
+    link.className = 'constellation-link';
+    link.setAttribute('data-source', nodeA.name);
+    link.setAttribute('data-target', nodeB.name);
+
+    link.style.width = `${distance}px`;
+    link.style.left = `${x1}px`;
+    link.style.top = `${y1}px`;
+    link.style.transform = `rotate(${angle}deg)`;
+    
+    // Add debug info
+    console.log(`Link ${nodeA.name} -> ${nodeB.name}:`, {
+        nodeA: { name: nodeA.name, center: { x: x1, y: y1 }, rect: rectA },
+        nodeB: { name: nodeB.name, center: { x: x2, y: y2 }, rect: rectB },
+        distance: distance,
+        angle: angle
+    });
+
+    grid.appendChild(link);
+
+    // DEBUG: Add visual markers
+    //addDebugDot(x1, y1, 'red', `Start: ${nodeA.name}`);
+    //addDebugDot(x2, y2, 'blue', `End: ${nodeB.name}`);
+}
+
+function addDebugDot(x, y, color, label) {
+    const grid = document.getElementById('constellationGrid');
+    if (!grid) return;
+    
+    const dot = document.createElement('div');
+    dot.className = 'debug-dot';
+    dot.style.cssText = `
+        position: absolute;
+        left: ${x - 3}px;
+        top: ${y - 3}px;
+        width: 6px;
+        height: 6px;
+        background: ${color};
+        border-radius: 50%;
+        border: 2px solid white;
+        z-index: 10000;
+        pointer-events: none;
+    `;
+    
+    const labelEl = document.createElement('div');
+    labelEl.textContent = label;
+    labelEl.style.cssText = `
+        position: absolute;
+        left: ${x + 10}px;
+        top: ${y - 10}px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 10px;
+        white-space: nowrap;
+        z-index: 10001;
+        pointer-events: none;
+    `;
+    
+    grid.appendChild(dot);
+    grid.appendChild(labelEl);
+}
+
+// Also update your CSS for the constellation link to ensure proper transform origin:
+const debugCSS = `
+.constellation-link {
+    position: absolute;
+    height: 2px;
+    transform-origin: 0 50%; /* Changed from 0 0 to 0 50% for better centering */
+    pointer-events: none;
+    z-index: 1;
+}
+
+.constellssation-grid {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Ensure consistent height */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    z-index: 5;
+}
+
+.debug-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 2px solid white;
+    z-index: 10000;
+    pointer-events: none;
+}
+`;
+
+// Update the existing style injection
+const existingStyle = document.querySelector('style');
+if (existingStyle) {
+    existingStyle.textContent += debugCSS;
+} else {
+    const style = document.createElement('style');
+    style.textContent = debugCSS;
+    document.head.appendChild(style);
+}
+// --- Hover Highlight Functions (Slightly adjusted for clarity) ---
+
+function highlightConnections(skillName) {
+    const node = nameToNodeMap[skillName];
+    const linkedNames = node.links;
+
+    document.querySelectorAll('.constellation-node-link').forEach(linkEl => {
+        const innerNode = linkEl.querySelector('.constellation-node');
+        innerNode.classList.remove('highlighted');
+        if (innerNode.getAttribute('data-skill-name') === skillName) {
+            innerNode.classList.add('highlighted');
+        }
+    });
+
+    document.querySelectorAll('.constellation-link').forEach(link => {
+        link.classList.remove('highlighted');
+        const source = link.getAttribute('data-source');
+        const target = link.getAttribute('data-target');
+
+        // Check if the current skill is directly linked (either as source or target)
+        if (source === skillName && linkedNames.includes(target) ||
+            target === skillName && nameToNodeMap[source] && nameToNodeMap[source].links.includes(skillName)) {
+            link.classList.add('highlighted');
+        }
+    });
+}
+
+function unhighlightConnections() {
+    document.querySelectorAll('.constellation-node').forEach(el => el.classList.remove('highlighted'));
+    document.querySelectorAll('.constellation-link').forEach(el => el.classList.remove('highlighted'));
+}
+
+
+// --- DOMContentLoaded Initialization (Unchanged) ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (Your existing header and scroll logic)
+
+    const header = document.getElementById('header');
+    const navLinks = document.getElementById('navLinks');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Initial Constellation Render
+    generateStarField();
+    renderConstellation();
+
+    // Re-render on window resize to ensure lines connect correctly and star field scales
+    window.addEventListener('resize', () => {
+        // Throttle resize for performance on complex rendering
+        if (window.resizeTimer) clearTimeout(window.resizeTimer);
+        window.resizeTimer = setTimeout(() => {
+            renderConstellation();
+        }, 100);
+    });
+
+    // ... (Your existing project/gallery rendering functions and lightbox logic should follow here)
+
+    // Placeholder project/gallery init calls (as in previous response)
+    const websites = []; // Assuming this is defined earlier
+    const games = []; // Assuming this is defined earlier
+    const works = []; // Assuming this is defined earlier
+    
+ 
+
+    // Lightbox logic
+    const lightbox = document.getElementById('lightbox');
+    const lightboxClose = document.getElementById('lightboxClose');
+    
+    if(lightboxClose) {
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+    }
+
+});
+
+
   </script>
 </body>
 </html>
