@@ -73,8 +73,8 @@
   },
   "https://futo-chatbot-server.onrender.com/": {
     "title": "Futo Chatbot",
-    "description": "AI chatbot with custom responses.",
-    "image": "assets/web-placeholder.jpg",
+    "description": "AI chatbot with custom responses (response server may be down).",
+    "image": "./futobot.png",
     "url": "https://futo-chatbot-server.onrender.com/"
   },
   "https://artlixir.glitch.me/": {
@@ -106,5 +106,34 @@
     "description": "Gunroar make the moon go brrrrrr",
     "image": "https://img.itch.zone/aW1nLzkxNDA4MjYuanBn/original/aM7Kqf.jpg",
     "url": "https://hmmmgames.itch.io/mega-moonlight-mania"
+    },
+    "https://ugochime.onrender.com/": {
+    
+     "title": "3D Desk Display",
+     "description": "A rough 3D desk display of this portfolio.",
+     "image": "./desk3D.png",
+     "url": "https://ugochime.onrender.com"
+    },
+    "https://hmmmarts.vercel.app/": {
+    
+     "title": "3D Desk Display",
+     "description": "Fully functional art commission website..",
+     "image": "./hmmmarts.png",
+     "url": "https://hmmmarts.vercel.app"
+    },
+    "https://github.com/GunroarCannon/Ecommerce-streamlit-app": {
+    
+     "title": "ECommerce Test Dashboard",
+     "description": "A full-featured data warehouse and analytics platform designed for a realistic multi-channel e-commerce business built with pandas and sql",
+     "image": "./ecommerce_eql_dashboard.jpg",
+     "url": "https://github.com/GunroarCannon/Ecommerce-streamlit-app"
+    },
+    "https://github.com/GunroarCannon/yahoo-finance-visualization-test": {
+    
+     "title": "3D Desk Display",
+     "description": "Google Colab Visualization of data from trackers in yfinance such as Apple and Tesla. Uses pandas and matplotlib.",
+     "image": "./yfinance.png",
+     "url": "https://github.com/GunroarCannon/yahoo-finance-visualization-test"
     }
+
   }

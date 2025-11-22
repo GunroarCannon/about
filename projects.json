@@ -99,6 +99,23 @@
     ],
     "websites": [
       {
+        "url": "https://ugochime.onrender.com/",
+        "description": "A rough 3D desk display of this portfolio.",
+        "fallback": {
+          "title": "3D Desk Display",
+          "image": "assets/web-placeholder.jpg"
+        }
+      },
+      {
+        "url":"https://github.com/GunroarCannon/Ecommerce-streamlit-app",
+        "fallback": {
+          "title": "ecommerce",
+          "image": "ecommerce_eql_dashboard.jpg"
+        }
+      },
+      
+
+      {
         "url": "https://hmmmarts.vercel.app/",
         "description": "An art commission website.",
         "fallback": {
@@ -106,12 +123,21 @@
           "image": "assets/web-placeholder.jpg"
         }
       },
+      
       {
-        "url": "https://ugochime.onrender.com/",
-        "description": "A rough 3D desk display of this portfolio.",
+        "url":"https://github.com/GunroarCannon/yahoo-finance-visualization-test",
         "fallback": {
-          "title": "3D Desk Display",
-          "image": "assets/web-placeholder.jpg"
+          "title": "Yfinance",
+          "image": "yfinance.png"
+        }
+      },
+
+      {
+        "url": "https://futo-chatbot-server.onrender.com/",
+        "description": "AI chatbot with custom responses.",
+        "fallback": {
+          "title": "Futo Chatbot",
+          "image": "futobot.png"
         }
       }
     ],
