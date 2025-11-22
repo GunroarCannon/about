@@ -99,18 +99,18 @@
     ],
     "websites": [
       {
-        "url": "https://futo-chatbot-server.onrender.com/",
-        "description": "AI chatbot with custom responses.",
+        "url": "https://hmmmarts.vercel.app/",
+        "description": "An art commission website.",
         "fallback": {
-          "title": "Futo Chatbot",
+          "title": "Hmmm Arts",
           "image": "assets/web-placeholder.jpg"
         }
       },
       {
-        "url": "https://artlixir.glitch.me/",
-        "description": "Generative art playground.",
+        "url": "https://ugochime.onrender.com/",
+        "description": "A rough 3D desk display of this portfolio.",
         "fallback": {
-          "title": "Artlixir",
+          "title": "3D Desk Display",
           "image": "assets/web-placeholder.jpg"
         }
       }
