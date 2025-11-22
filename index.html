@@ -2078,7 +2078,14 @@ function generateStarField(count = 100) {
     }
 }
 
-
+function getDynamicOffset(baseOffset, dimension, isWidth = true) {
+    const baseScreenSize = 1920; // Your ASUS Vivobook reference size
+    const currentSize = isWidth ? window.innerWidth : window.innerHeight;
+    const scaleFactor = currentSize / baseScreenSize;
+    
+    // Adjust offset based on screen size
+    return baseOffset * scaleFactor;
+}
 // --- Main Constellation Renderer ---
 function renderConstellation() {
     const grid = document.getElementById('constellationGrid');
@@ -2188,10 +2195,10 @@ function drawSingleLink(grid, gridRect, nodeA, nodeB) {
     };
 
     // Convert to grid-relative coordinates (account for grid position and scroll)
-    const x1 = centerA.x - gridRect.left+(nodeA.nx||0);
-    const y1 = centerA.y - gridRect.top+(nodeA.ny||0);
-    const x2 = centerB.x - gridRect.left+(nodeB.nx||0);
-    const y2 = centerB.y - gridRect.top+(nodeB.ny || 0);
+    const x1 = centerA.x - gridRect.left+getDynamicOffset(nodeA.nx || 0, window.innerWidth, true);;
+    const y1 = centerA.y - gridRect.top+getDynamicOffset(nodeA.ny || 0, window.innerHeight, false);
+    const x2 = centerB.x - gridRect.left+getDynamicOffset(nodeB.nx || 0, window.innerWidth, true);
+    const y2 = centerB.y - gridRect.top+getDynamicOffset(nodeB.ny || 0, window.innerHeight, false);
 
     const dx = x2 - x1;
     const dy = y2 - y1;
