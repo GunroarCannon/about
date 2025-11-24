@@ -116,7 +116,7 @@
     },
     "https://hmmmarts.vercel.app/": {
     
-     "title": "3D Desk Display",
+     "title": "Hmmm arts commission website",
      "description": "Fully functional art commission website..",
      "image": "./hmmmarts.png",
      "url": "https://hmmmarts.vercel.app"
@@ -130,10 +130,11 @@
     },
     "https://github.com/GunroarCannon/yahoo-finance-visualization-test": {
     
-     "title": "3D Desk Display",
+     "title": "YFinance data analytics visualization",
      "description": "Google Colab Visualization of data from trackers in yfinance such as Apple and Tesla. Uses pandas and matplotlib.",
      "image": "./yfinance.png",
      "url": "https://github.com/GunroarCannon/yahoo-finance-visualization-test"
     }
 
   }
+
